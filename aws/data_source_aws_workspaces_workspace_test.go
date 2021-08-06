@@ -9,12 +9,12 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
-func TestAccDataSourceAwsWorkspacesWorkspace_byWorkspaceID(t *testing.T) {
+func testAccDataSourceAwsWorkspacesWorkspace_byWorkspaceID(t *testing.T) {
 	rName := acctest.RandString(8)
 	dataSourceName := "data.aws_workspaces_workspace.test"
 	resourceName := "aws_workspaces_workspace.test"
 
-	resource.ParallelTest(t, resource.TestCase{
+	resource.Test(t, resource.TestCase{
 		PreCheck:   func() { testAccPreCheck(t); testAccPreCheckHasIAMRole(t, "workspaces_DefaultRole") },
 		ErrorCheck: testAccErrorCheck(t, workspaces.EndpointsID),
 		Providers:  testAccProviders,
@@ -42,12 +42,12 @@ func TestAccDataSourceAwsWorkspacesWorkspace_byWorkspaceID(t *testing.T) {
 	})
 }
 
-func TestAccDataSourceAwsWorkspacesWorkspace_byDirectoryID_userName(t *testing.T) {
+func testAccDataSourceAwsWorkspacesWorkspace_byDirectoryID_userName(t *testing.T) {
 	rName := acctest.RandString(8)
 	dataSourceName := "data.aws_workspaces_workspace.test"
 	resourceName := "aws_workspaces_workspace.test"
 
-	resource.ParallelTest(t, resource.TestCase{
+	resource.Test(t, resource.TestCase{
 		PreCheck:   func() { testAccPreCheck(t); testAccPreCheckHasIAMRole(t, "workspaces_DefaultRole") },
 		ErrorCheck: testAccErrorCheck(t, workspaces.EndpointsID),
 		Providers:  testAccProviders,
@@ -75,8 +75,8 @@ func TestAccDataSourceAwsWorkspacesWorkspace_byDirectoryID_userName(t *testing.T
 	})
 }
 
-func TestAccDataSourceAwsWorkspacesWorkspace_workspaceIDAndDirectoryIDConflict(t *testing.T) {
-	resource.ParallelTest(t, resource.TestCase{
+func testAccDataSourceAwsWorkspacesWorkspace_workspaceIDAndDirectoryIDConflict(t *testing.T) {
+	resource.Test(t, resource.TestCase{
 		PreCheck:   func() { testAccPreCheck(t); testAccPreCheckHasIAMRole(t, "workspaces_DefaultRole") },
 		ErrorCheck: testAccErrorCheck(t, workspaces.EndpointsID),
 		Providers:  testAccProviders,
